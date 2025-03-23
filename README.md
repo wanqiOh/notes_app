@@ -48,11 +48,11 @@ NotesApp is a simple and intuitive mobile application for creating, editing, and
 `yarn start`
 
 ## 📸 Screenshots
-![home](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_Home.PNG?alt=media&token=c7af74d0-7ac3-4360-a7bb-e5ac6a768c32)
-![new notes](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_NewNote.PNG?alt=media&token=2e6c370e-76f8-415a-adf4-d67ecb3f90dd)
-![summary](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_Summary.PNG?alt=media&token=20292fde-fa81-4de7-9f8a-4027a0b54820)
-![settings](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_Settings.PNG?alt=media&token=ae52b8ec-a4ba-4964-bf40-0eb2573d6dc3)
-![Popup Clear](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_Clear.PNG?alt=media&token=7bfbe347-d944-4606-ae80-dc1265bcca32)
+![home](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_Home.PNG?alt=media&token=93d825a2-2734-4c4c-acb7-adaf3f6dcfab)
+![new notes](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_NewNote.PNG?alt=media&token=4cde4df7-5e30-4c32-9af4-218a86b6bc8f)
+![summary](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_Summary.PNG?alt=media&token=1416d062-9406-47d1-9f29-84b6b64bbb04)
+![settings](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_Settings.PNG?alt=media&token=9761c7ad-cc40-4613-8c94-052a03479a3b)
+![Popup Clear](https://firebasestorage.googleapis.com/v0/b/rentalapp-fa5bd.appspot.com/o/images%2FUI_Clear.PNG?alt=media&token=e0e89d35-be7b-4cf0-b967-faf1352225a9)
 
 ## 💾 Data Persistence
 All notes are stored using AsyncStorage, allowing users to retain their notes even after restarting the app.
