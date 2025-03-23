@@ -5,6 +5,7 @@ import styles from "../styles/styles";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "./Home";
+import NoteCard from "../components/NoteCard";
 
 const categoryIcons: any = {
     "Work and Study": require("../assets/work.png"),
@@ -51,16 +52,18 @@ const SummaryScreen = () => {
     }));
 
     return (
-        <SafeAreaView style={styles.safeContainer}>
-            <View style={styles.container}>
-                <Text style={styles.headerText}>Summary</Text>
-                <FlatList
-                    data={categories}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.category}
-                />
-            </View>
-        </SafeAreaView>
+        <NoteCard
+            onPress={() => navigation.goBack()}
+            title={"Summary"}
+            children={
+                <>
+                    <FlatList
+                        data={categories}
+                        renderItem={renderItem}
+                        keyExtractor={(item) => item.category}
+                    />
+                </>
+            } />
     );
 };
 

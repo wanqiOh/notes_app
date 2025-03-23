@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Alert } from "react-native";
+import { Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { RouteProp, useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
 import DropDownPicker from "react-native-dropdown-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RootStackParamList } from "./Home";
 import { StackNavigationProp } from "@react-navigation/stack";
 import styles from "../styles/styles";
-import PopoutMessage from "../components/PopupMessage";
+import NoteCard from "../components/NoteCard";
 
 const CATEGORIES_KEY = "categories";
 const NOTES_KEY = "notes";
@@ -112,63 +111,56 @@ const NewNoteScreen = () => {
     };
 
     return (
-        <SafeAreaView style={styles.safeContainer}>
-            <View style={styles.container}>
-                {/* Header */}
-                <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 20 }}>
-                    <TouchableOpacity onPress={() => {
-                        clearFields();
-                        navigation.setParams({ noteId: undefined, selectedCategory: undefined, noteContent: "" });
-                        navigation.goBack();
-                    }}>
-                        <Ionicons name="chevron-back" size={24} color="#fff" />
+        <NoteCard
+            onPress={() => {
+                clearFields();
+                navigation.setParams({ noteId: undefined, selectedCategory: undefined, noteContent: "" });
+                navigation.goBack();
+            }}
+            title={noteId ? "Edit Note" : "New Note"}
+            children={
+                <>
+                    {/* Category Dropdown */}
+                    <DropDownPicker
+                        open={open}
+                        value={category}
+                        items={categories}
+                        setOpen={setOpen}
+                        setValue={setCategory}
+                        setItems={setCategories}
+                        placeholder="Choose a category"
+                        containerStyle={{ marginBottom: 20 }}
+                        style={{ backgroundColor: "#2A1244", borderWidth: 0 }}
+                        dropDownContainerStyle={{ backgroundColor: "#2A1244" }}
+                        textStyle={{ color: "#fff" }}
+                    />
+
+                    {/* Note Input */}
+                    <TextInput
+                        style={{
+                            height: 150,
+                            backgroundColor: "#2A1244",
+                            color: "#fff",
+                            padding: 10,
+                            borderRadius: 10,
+                            textAlignVertical: "top"
+                        }}
+                        placeholder="Please input note content"
+                        placeholderTextColor="#999"
+                        multiline
+                        value={content}
+                        onChangeText={setContent}
+                    />
+
+                    {/* Save Button */}
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={handleSaveNote}
+                    >
+                        <Text style={styles.buttonText}>{noteId ? "Update Note" : "Save"}</Text>
                     </TouchableOpacity>
-                    <Text style={{ color: "#fff", fontSize: 20, marginLeft: 10 }}>
-                        {noteId ? "Edit Note" : "New Note"}
-                    </Text>
-                </View>
-
-                {/* Category Dropdown */}
-                <DropDownPicker
-                    open={open}
-                    value={category}
-                    items={categories}
-                    setOpen={setOpen}
-                    setValue={setCategory}
-                    setItems={setCategories}
-                    placeholder="Choose a category"
-                    containerStyle={{ marginBottom: 20 }}
-                    style={{ backgroundColor: "#2A1244", borderWidth: 0 }}
-                    dropDownContainerStyle={{ backgroundColor: "#2A1244" }}
-                    textStyle={{ color: "#fff" }}
-                />
-
-                {/* Note Input */}
-                <TextInput
-                    style={{
-                        height: 150,
-                        backgroundColor: "#2A1244",
-                        color: "#fff",
-                        padding: 10,
-                        borderRadius: 10,
-                        textAlignVertical: "top"
-                    }}
-                    placeholder="Please input note content"
-                    placeholderTextColor="#999"
-                    multiline
-                    value={content}
-                    onChangeText={setContent}
-                />
-
-                {/* Save Button */}
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={handleSaveNote}
-                >
-                    <Text style={styles.buttonText}>{noteId ? "Update Note" : "Save"}</Text>
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView>
+                </>
+            } />
     );
 };
 

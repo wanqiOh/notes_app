@@ -5,6 +5,7 @@ import { getNotes, initializeNotes } from "../storage/storage";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import styles from "../styles/styles";
 import { StackNavigationProp } from "@react-navigation/stack";
+import NoteCard from "../components/NoteCard";
 
 export interface Note {
     id: string;
@@ -69,18 +70,15 @@ const HomeScreen: React.FC = () => {
     );
 
     return (
-        <SafeAreaView style={styles.safeContainer}>
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <Text style={styles.headerText}>Home</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-                        <Ionicons name="settings-outline" size={24} color="#A0A0A0" />
-                    </TouchableOpacity>
-                </View>
-                <Text style={styles.recentNotes}>⏳ Recently created notes</Text>
-                <FlatList data={notes} renderItem={renderItem} keyExtractor={(item) => item.id.toString()} />
-            </View>
-        </SafeAreaView>
+        <NoteCard
+            onPress={() => navigation.navigate("Settings")}
+            title={"Home"}
+            children={
+                <>
+                    <Text style={styles.recentNotes}>⏳ Recently created notes</Text>
+                    <FlatList data={notes} renderItem={renderItem} keyExtractor={(item) => item.id.toString()} />
+                </>
+            } />
     );
 };
 

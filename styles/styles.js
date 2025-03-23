@@ -115,6 +115,17 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 40,
     },
+    backHeader: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 20,
+    },
+    backHeaderText: {
+        fontSize: 28,
+        fontWeight: "bold",
+        color: "white",
+        marginLeft: 10
+    },
 });
 
 export default styles;

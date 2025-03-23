@@ -6,6 +6,7 @@ import { getSettingsOptions, saveSettingsOptions, clearNotes } from "../storage/
 import { useNavigation } from "@react-navigation/native";
 import ConfirmationModal from "../components/ConfirmationModal";
 import PopoutMessage from "../components/PopupMessage";
+import NoteCard from "../components/NoteCard";
 
 const SettingsScreen: React.FC = () => {
     const navigation = useNavigation();
@@ -34,46 +35,41 @@ const SettingsScreen: React.FC = () => {
     };
 
     return (
-        <SafeAreaView style={styles.safeContainer}>
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <Ionicons name="chevron-back" size={24} color="#A0A0A0" />
+        <NoteCard
+            onPress={() => navigation.goBack()}
+            title={"Settings"}
+            children={
+                <>
+                    {/* Settings List */}
+                    <FlatList
+                        data={settingsOptions}
+                        keyExtractor={(item: any) => item.id.toString()}
+                        renderItem={({ item }: any) => (
+                            <TouchableOpacity style={styles.noteItem}>
+                                <View style={styles.iconContainer}>
+                                    <Ionicons name={item.icon} size={24} color="#A463F2" />
+                                </View>
+                                <View style={styles.noteTextContainer}>
+                                    <Text style={styles.titleText}>{item.title}</Text>
+                                </View>
+                                <Ionicons name="chevron-forward-outline" size={20} color="#FF3B78" />
+                            </TouchableOpacity>
+                        )}
+                    />
+
+                    {/* Delete All Notes Button */}
+                    <TouchableOpacity style={styles.button} onPress={handleDeleteNotes}>
+                        <Text style={styles.buttonText}>Delete All Notes</Text>
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>Settings</Text>
-                    <View style={{ width: 24 }} />
-                </View>
-
-                {/* Settings List */}
-                <FlatList
-                    data={settingsOptions}
-                    keyExtractor={(item: any) => item.id.toString()}
-                    renderItem={({ item }: any) => (
-                        <TouchableOpacity style={styles.noteItem}>
-                            <View style={styles.iconContainer}>
-                                <Ionicons name={item.icon} size={24} color="#A463F2" />
-                            </View>
-                            <View style={styles.noteTextContainer}>
-                                <Text style={styles.titleText}>{item.title}</Text>
-                            </View>
-                            <Ionicons name="chevron-forward-outline" size={20} color="#FF3B78" />
-                        </TouchableOpacity>
-                    )}
-                />
-
-                {/* Delete All Notes Button */}
-                <TouchableOpacity style={styles.button} onPress={handleDeleteNotes}>
-                    <Text style={styles.buttonText}>Delete All Notes</Text>
-                </TouchableOpacity>
 
 
-                {/* Confirmation Modal */}
-                <ConfirmationModal visible={showModal} onCancel={() => setShowModal(false)} onConfirm={confirmDelete} />
+                    {/* Confirmation Modal */}
+                    <ConfirmationModal visible={showModal} onCancel={() => setShowModal(false)} onConfirm={confirmDelete} />
 
-                {/* Popout Message */}
-                <PopoutMessage message="All notes have been cleared" visible={showPopout} onHide={() => setShowPopout(false)} />
-            </View>
-        </SafeAreaView>
+                    {/* Popout Message */}
+                    <PopoutMessage message="All notes have been cleared" visible={showPopout} onHide={() => setShowPopout(false)} />
+                </>
+            } />
     );
 };
 
