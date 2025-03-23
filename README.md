@@ -19,7 +19,7 @@ NotesApp is a simple and intuitive mobile application for creating, editing, and
 - 🗄️ AsyncStorage (for local storage)
 - 🏗️ React Navigation
 - 🎨 Styled Components
-- ⚡ TypeScript (optional)
+- ⚡ TypeScript
 
 ## 🚀 Installation & Setup
 
