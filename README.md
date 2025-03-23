@@ -24,7 +24,7 @@ NotesApp is a simple and intuitive mobile application for creating, editing, and
 ## 🚀 Installation & Setup
 
 1️⃣ **Clone the Repository**
-```shgit clone https://github.com/wanqiOh/notes_app.git```
+```sh git clone https://github.com/wanqiOh/notes_app.git```
 
 2️⃣ **Navigate to the Project Folder**
 `cd notes_app`
